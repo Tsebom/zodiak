@@ -1,0 +1,17 @@
+http:
+  routers:
+    dashboard:
+      rule: 'Host(`{{ env "DASHBOARD_DOMAIN" }}`)'
+      entryPoints:
+        - https
+      service: api@internal
+      middlewares:
+        - dashboard-auth
+      tls:
+        certResolver: letsencrypt
+
+  middlewares:
+    dashboard-auth:
+      basicAuth:
+        users:
+          - '{{ env "AUTH_DASHBOARD" }}'

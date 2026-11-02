@@ -1,0 +1,13 @@
+# Домены и настройки для инфраструктуры
+# Замените значения ниже на ваши реальные данные
+
+# Traefik
+TRAEFIK_EMAIL=admin@example.com
+DASHBOARD_DOMAIN=traefik.example.com
+
+# Remnawave Panel
+FRONT_END_DOMAIN=panel.example.com
+SUB_PUBLIC_DOMAIN=panel.example.com/api/sub
+
+# Remnawave Node
+NODE_DOMAIN=node.example.com

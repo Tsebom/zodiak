@@ -1,0 +1,29 @@
+services:
+    traefik:
+        image: traefik:latest
+        container_name: traefik
+        restart: unless-stopped
+        security_opt:
+            - no-new-privileges:true
+        networks:
+            - remnawave-network
+        ports:
+            - '80:80'
+            - '443:443'
+        env_file:
+            - .env
+        environment:
+            - TZ=UTC
+            - TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_EMAIL=${EMAIL}
+        volumes:
+            - ./traefik.yml:/traefik.yml:ro
+            - ./letsencrypt:/letsencrypt
+            - ./config:/config:ro
+            - ./logs:/var/log/traefik
+networks:
+    remnawave-network:
+        name: remnawave-network
+        driver: bridge
+    dns:
+        name: dns
+        driver: bridge
