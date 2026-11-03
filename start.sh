@@ -67,8 +67,8 @@ if [ "$INSTALL_CHOICE" = "1" ]; then
     curl -sSL -o "$PANEL_DIR/docker-compose.yml" https://raw.githubusercontent.com/remnawave/backend/refs/heads/main/docker-compose-prod.yml
     curl -sSL -o "$PANEL_DIR/.env" https://raw.githubusercontent.com/remnawave/backend/refs/heads/main/.env.sample
     
-    # Исправляем сеть на external: true, чтобы избежать предупреждений Docker
-    sed -i 's/external: false/external: true/g' "$PANEL_DIR/docker-compose.yml"
+    # Исправляем сеть на external: true, но ТОЛЬКО для remnawave-network, чтобы не сломать volumes
+    sed -i '/remnawave-network:/,/external: false/ s/external: false/external: true/' "$PANEL_DIR/docker-compose.yml"
 
     # 2. Настройка .env
     echo -e "${BLUE}Настройка .env файла...${NC}"
