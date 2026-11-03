@@ -25,6 +25,10 @@ fi
 # Загружаем переменные из .variables
 source "$VAR_FILE"
 
+# Создаем общую сеть для инфраструктуры, чтобы избежать ошибок external network
+echo -e "${BLUE}Создание общей сети remnawave-network...${NC}"
+sudo docker network create remnawave-network || true
+
 #---------------------ВЫБОР ТИПА УСТАНОВКИ---------------------
 
 echo -e "${BLUE}Что вы хотите установить?${NC}"
