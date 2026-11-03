@@ -96,7 +96,7 @@ if [ "$INSTALL_CHOICE" = "1" ]; then
 
     # 3. Запуск панели
     echo -e "${BLUE}Запуск Remnawave Panel...${NC}"
-    docker compose up -d
+    docker compose -p remnawave-panel up -d
     echo -e "${GREEN}Remnawave Panel успешно запущена!${NC}"
 
     # 4. Создание конфига маршрутизации Traefik для Panel
@@ -158,7 +158,7 @@ elif [ "$INSTALL_CHOICE" = "2" ]; then
 
     # 4. Запуск Node
     echo -e "${BLUE}Запуск Remnawave Node...${NC}"
-    docker compose up -d
+    docker compose -p remnawave-node up -d
     echo -e "${GREEN}Remnawave Node успешно запущен!${NC}"
 
     # 5. Создание конфига маршрутизации для Node
@@ -217,6 +217,6 @@ done
 # Запуск Traefik
 echo -e "${BLUE}Запуск Traefik...${NC}"
 cd "$TRAEFIK_DIR"
-docker compose up -d
+docker compose -p remnawave-traefik up -d
 
 echo -e "${GREEN}Развертывание успешно завершено!${NC}"
